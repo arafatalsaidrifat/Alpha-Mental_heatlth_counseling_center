@@ -1,0 +1,39 @@
+/* Home.css */
+
+.app-content {
+    background-color: #f9fafb; /* Light gray background for the main content */
+    min-height: 100vh; /* Full height for the main content */
+    padding: 20px; /* Padding around the content */
+  }
+  
+  h1 {
+    color: #333; /* Dark color for main headings */
+  }
+  
+  h2 {
+    color: #4a5568; /* Gray color for section headings */
+  }
+  
+  .table {
+    width: 100%; /* Full width for the table */
+    border-collapse: collapse; /* Remove gaps between table cells */
+  }
+  
+  th, td {
+    padding: 12px; /* Padding for table cells */
+    text-align: left; /* Align text to the left */
+    border: 1px solid #dee2e6; /* Border for table cells */
+  }
+  
+  tr:hover {
+    background-color: #f1f5f9; /* Light gray background on hover */
+  }
+  
+  .bg-blue-500 {
+    background-color: #3b82f6; /* Custom blue color */
+  }
+  
+  .bg-blue-600:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+  }
+  

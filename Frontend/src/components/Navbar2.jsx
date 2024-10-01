@@ -112,8 +112,12 @@ function Navbar() {
             </svg>
           </label>
           
+{/* Added Login and Sign Up Buttons */}
+<Link to="/login" className="btn bg-blue-500 border-none mr-2">LOGIN</Link>
+          <Link to="/signup" className="btn bg-red-500 border-none">SIGN UP</Link>
 
           
+
 
 
         </div>
