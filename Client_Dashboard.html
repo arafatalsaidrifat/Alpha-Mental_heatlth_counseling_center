@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="Client_Dashboard.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>Patient Dashboard</h1>
+            <p>Welcome back, [Patient Name]! Here's a quick overview of your activity.</p>
+        </header>
+        <div class="tile-container">
+            <div class="tile" id="appointments">
+                <i class="fas fa-calendar-check"></i>
+                <h2>Appointments</h2>
+                <p>Next Appointment: Oct 5, 2024 - 2:00 PM</p>
+                <button class="tile-button">View All</button>
+            </div>
+            <div class="tile" id="find-counselors">
+                <i class="fas fa-user-md"></i>
+                <h2>Find Counselors</h2>
+                <p>Matching with the best counselors based on your preferences.</p>
+                <button class="tile-button">Find Now</button>
+            </div>
+            <div class="tile" id="progress">
+                <i class="fas fa-chart-line"></i>
+                <h2>My Progress</h2>
+                <canvas id="progressChart" width="150" height="150"></canvas>
+                <button class="tile-button">View Details</button>
+            </div>
+            <div class="tile" id="messages">
+                <i class="fas fa-envelope"></i>
+                <h2>Messages</h2>
+                <p>You have 3 unread messages.</p>
+                <button class="tile-button">Go to Inbox</button>
+            </div>
+            <div class="tile" id="recommendations">
+                <i class="fas fa-lightbulb"></i>
+                <h2>Recommendations</h2>
+                <p>Personalized tips to improve your well-being.</p>
+                <button class="tile-button">View Tips</button>
+            </div>
+            <div class="tile" id="feedback">
+                <i class="fas fa-comments"></i>
+                <h2>Give Feedback</h2>
+                <p>Share your experience with us.</p>
+                <button class="tile-button">Give Feedback</button>
+            </div>
+            <div class="tile" id="payments">
+                <i class="fas fa-dollar-sign"></i>
+                <h2>Payments</h2>
+                <p>Outstanding balance: 150 BDT</p>
+                <button class="tile-button">Make Payment</button>
+            </div>
+            <div class="tile" id="resources">
+                <i class="fas fa-book"></i>
+                <h2>Resources</h2>
+                <p>Access mental health resources.</p>
+                <button class="tile-button">Explore</button>
+            </div>
+            <div class="tile" id="support">
+                <i class="fas fa-life-ring"></i>
+                <h2>Support</h2>
+                <p>Need help? Contact support.</p>
+                <button class="tile-button">Get Support</button>
+            </div>
+            <div class="tile" id="profile">
+                <i class="fas fa-user"></i>
+                <h2>My Profile</h2>
+                <p>Manage your account settings.</p>
+                <button class="tile-button">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        const progressChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Mental Health Score',
+                    data: [65, 75, 70, 80, 85],
+                    borderColor: 'hsl(182, 66%, 66%)',
+                    backgroundColor: 'rgba(182, 222, 222, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
