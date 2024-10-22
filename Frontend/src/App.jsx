@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar'; // Main Navbar
@@ -18,6 +19,7 @@ export const ThemeContext = createContext();
 
 function App() {
   const [theme, setTheme] = useState('light');
+  // eslint-disable-next-line no-unused-vars
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
   const location = useLocation();
 
