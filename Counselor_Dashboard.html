@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counselor Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="Counselor_Dashboard.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>Counselor Dashboard</h1>
+            <p>Welcome, [Counselor Name]! Here's a summary of your activity.</p>
+        </header>
+        <div class="tile-container">
+            <div class="tile" id="appointments">
+                <i class="fas fa-calendar-alt"></i>
+                <h2>Appointments</h2>
+                <p>Next Appointment: Oct 5, 2024 - 10:00 AM</p>
+                <button class="tile-button">View Schedule</button>
+            </div>
+            <div class="tile" id="client-profiles">
+                <i class="fas fa-users"></i>
+                <h2>Client Profiles</h2>
+                <p>Manage your clients' profiles and progress.</p>
+                <button class="tile-button">View Profiles</button>
+            </div>
+            <div class="tile" id="session-notes">
+                <i class="fas fa-sticky-note"></i>
+                <h2>Session Notes</h2>
+                <p>Access and update notes for your sessions.</p>
+                <button class="tile-button">View Notes</button>
+            </div>
+            <div class="tile" id="messages">
+                <i class="fas fa-envelope"></i>
+                <h2>Messages</h2>
+                <p>5 unread messages from clients.</p>
+                <button class="tile-button">Go to Inbox</button>
+            </div>
+            <div class="tile" id="analytics">
+                <i class="fas fa-chart-bar"></i>
+                <h2>Analytics</h2>
+                <canvas id="analyticsChart" width="150" height="150"></canvas>
+                <button class="tile-button">View Reports</button>
+            </div>
+            <div class="tile" id="availability">
+                <i class="fas fa-clock"></i>
+                <h2>Availability</h2>
+                <p>Set your available hours for clients.</p>
+                <button class="tile-button">Update Hours</button>
+            </div>
+            <div class="tile" id="payments">
+                <i class="fas fa-dollar-sign"></i>
+                <h2>Payments</h2>
+                <p>500 BDT in pending payments.</p>
+                <button class="tile-button">View Payments</button>
+            </div>
+            <div class="tile" id="resources">
+                <i class="fas fa-book"></i>
+                <h2>Resources</h2>
+                <p>Access resources for counseling sessions.</p>
+                <button class="tile-button">Explore</button>
+            </div>
+            <div class="tile" id="feedback">
+                <i class="fas fa-comments"></i>
+                <h2>Feedback</h2>
+                <p>Read feedback from your clients.</p>
+                <button class="tile-button">View Feedback</button>
+            </div>
+            <div class="tile" id="match-settings">
+                <i class="fas fa-cogs"></i>
+                <h2>Match Settings</h2>
+                <p>Adjust preferences for client-counselor matching.</p>
+                <button class="tile-button">Update Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('analyticsChart').getContext('2d');
+        const analyticsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Sessions Completed',
+                    data: [20, 15, 18, 22, 30],
+                    backgroundColor: 'hsl(182, 66%, 66%)',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

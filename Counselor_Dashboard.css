@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #eef2f7;
+    color: #333;
+    padding: 20px;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 18px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.tile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.tile {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.tile:hover {
+    background-color: hsl(182, 66%, 66%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+.tile i {
+    font-size: 40px;
+    color: #4A90E2;
+    margin-bottom: 10px;
+}
+
+.tile h2 {
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.tile p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.tile-button {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tile-button:hover {
+    background-color: hsl(182, 66%, 66%);
+}
+
+canvas {
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+    .tile-container {
+        grid-template-columns: 1fr;
+    }
+}
