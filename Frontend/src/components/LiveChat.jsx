@@ -16,7 +16,7 @@ const LiveChat = () => {
       // Simulate a bot response
       setTimeout(() => {
         const botResponses = [
-          "Hello! How can I assist you today?",
+          "Hello Asslamualaikum! How can I assist you today?",
           "Thank you for reaching out!",
           "I'm here to help you with any questions you have.",
           "Your mental health is important to us.",

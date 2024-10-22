@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar2() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const aboutRef = useRef(null);
 
@@ -11,12 +11,6 @@ function Navbar() {
 
   const navItems = (
     <>
-      <li>
-        <Link to="/dashboard" className="nav-link">
-          <span className='text-amber-400'>Dashboard</span>
-        </Link>
-      </li>
-
       <li className="relative" ref={aboutRef}>
         <div className="flex items-center">
           <div
@@ -25,14 +19,12 @@ function Navbar() {
             onTouchEnd={handleMoreClick}
             className={`nav-link ${isAboutOpen ? 'text-blue-500' : 'text-black'} cursor-pointer`}
           >
-            More
+           
           </div>
         </div>
         {isAboutOpen && (
           <ul className="absolute left-0 mt-1 w-40 p-2 bg-white border rounded shadow-lg z-50">
             <li><Link to="/packages" className="block p-2 hover:bg-gray-200" onClick={() => setIsAboutOpen(false)}>Packages</Link></li>
-
-            
             <li><Link to="/payment" className="block p-2 hover:bg-gray-200" onClick={() => setIsAboutOpen(false)}>Payments</Link></li>
             <li><Link to="/livechat" className="block p-2 hover:bg-gray-200" onClick={() => setIsAboutOpen(false)}>Live Chat</Link></li>
           </ul>
@@ -58,47 +50,18 @@ function Navbar() {
   return (
     <div className='w-full'>
       <div className="navbar bg-base-100">
-
-
-
-
-      <div className="navbar-start">
-  <Link to="/" className="text-xl font-bold cursor-pointer">
-    <span className="text-2xl">MIND</span>
-    <span className="text-green-500">full</span>
-  </Link>
-</div>
-
-
-
-
+        <div className="navbar-start">
+          <Link to="/" className="text-xl font-bold cursor-pointer">
+            <span className="text-2xl">MIND</span>
+            <span className="text-green-500">full</span>
+          </Link>
+        </div>
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex space-x-4">
             {navItems}
           </ul>
         </div>
-
-
-
-
-        <div className="hidden md:block mr-3">
-          <label className="px-3 py-2 border rounded-md flex items-center gap-2">
-            <input type="text" className="grow outline-none" placeholder="Search" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="h-4 w-4 opacity-70">
-              <path
-                fillRule="evenodd"
-                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5,0,0,1,7,0Z"
-                clipRule="evenodd" />
-            </svg>
-          </label>
-        </div>
-
-
 
         <div className="flex items-center justify-end flex-grow">
           <label className="swap swap-rotate mr-3">
@@ -111,19 +74,14 @@ function Navbar() {
               <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
             </svg>
           </label>
-          
-{/* Added Login and Sign Up Buttons */}
-<Link to="/login" className="btn bg-blue-500 border-none mr-2">LOGIN</Link>
+
+          {/* Added Login and Sign Up Buttons */}
+          <Link to="/login" className="btn bg-blue-500 border-none mr-2">LOGIN</Link>
           <Link to="/signup" className="btn bg-red-500 border-none">SIGN UP</Link>
-
-          
-
-
-
         </div>
       </div>
     </div>
   );
 }
 
-export default Navbar;
+export default Navbar2;
