@@ -29,7 +29,7 @@ function Signup() {
 
       if (response.ok) {
         alert('Signup successful');
-        navigate('http://localhost:5173/');  // Redirect to homepage
+        navigate('/dashboard');  // Redirect to homepage
       } else {
         alert('Error during signup');
       }

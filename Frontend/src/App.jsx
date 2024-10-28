@@ -24,8 +24,14 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
+    fetch('http://localhost:3001/login')
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+  
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+  
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
