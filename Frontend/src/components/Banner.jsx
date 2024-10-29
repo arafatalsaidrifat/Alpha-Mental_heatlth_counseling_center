@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 // Import the Navbar
 import Navbar from './Navbar';
-const back = "/back.jpeg"; // Adjusted path
+import React, { useState } from 'react';
+
+const back = "/back.jpeg"; // Adjusted path for background image
 
 function Banner() {
   const [currentDivision, setCurrentDivision] = useState(0);

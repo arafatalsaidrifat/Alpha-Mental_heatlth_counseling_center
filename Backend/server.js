@@ -49,7 +49,7 @@ app.post('/signup', async (req, res) => {
 });
 
 // Login Route with Logging
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { mail, password } = req.body;
 
   if (!mail || !password) {
@@ -85,6 +85,30 @@ app.post('/login', (req, res) => {
     } else {
       res.status(401).send('Invalid email or password');
     }
+  });
+});
+
+// Book a session
+app.post('/book', (req, res) => {
+  const { doctorName, session_time, patientName, contact } = req.body; // Updated property name
+  const query = `INSERT INTO bookings (doctor_name, session_time, patient_name, contact) VALUES (?, ?, ?, ?)`;
+  db.query(query, [doctorName, session_time, patientName, contact], (error, results) => {
+    if (error) return res.status(500).send(error);
+    res.status(200).send("Booking successful");
+  });
+});
+
+// Get all booked sessions
+app.get('/sessions', (req, res) => {
+
+
+
+  //const userId = req.params.userId; // Get userId from route parameters
+  //const query = `SELECT * FROM bookings WHERE user_id = ?`; // Fetch booki
+  const query = `SELECT * FROM bookings`; // Fetch all bookings
+  db.query(query, (error, results) => {
+    if (error) return res.status(500).send(error);
+    res.status(200).json(results); // Send results as JSON
   });
 });
 

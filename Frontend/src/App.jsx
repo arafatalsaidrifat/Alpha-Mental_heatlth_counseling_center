@@ -10,11 +10,18 @@ import Login from './components/Login';
 import Banner from './components/Banner'; // Your Banner component acts as the Landing Page
 import Footer from './components/Footer';
 import './index.css'; 
-import Counselor from './components/counselor'; // Adjust the path as necessary
+import Counselor from './components/Counselor'; // Adjust the path as necessary
 import LiveChat from './components/LiveChat';
 import HealthRecord from './components/HealthRecord';
 import DoctorPackages from './components/DoctorPackages';
-
+import Psychiatrists from './components/Psychiatrists';
+import Psychologists from './components/Psychologists';
+import Counselors from './components/Counselors';
+import BookingPage from './components/BookingPage'; // Import BookingPage
+import SessionsPage from './components/SessionsPage';
+import HealthSuggestions from './components/HealthSuggestions'; // Import HealthSuggestions
+import MedicinePage from './components/MedicinePage';
+import TestsPage from './components/TestsPage';
 export const ThemeContext = createContext();
 
 function App() {
@@ -32,7 +39,6 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
   
-
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
@@ -54,6 +60,14 @@ function App() {
           <Route path="/healthRecord" element={<HealthRecord />} />
           <Route path="/liveChat" element={<LiveChat />} />
           <Route path="/packages" element={<DoctorPackages />} />
+          <Route path="/psychiatrists" element={<Psychiatrists />} />
+          <Route path="/psychologists" element={<Psychologists />} />
+          <Route path="/counselors" element={<Counselors />} />
+          <Route path="/book" element={<BookingPage />} /> {/* Route to BookingPage */}
+          <Route path="/sessions" element={<SessionsPage />} />
+          <Route path="/health-suggestions" element={<HealthSuggestions />} /> {/* New Route for HealthSuggestions */}
+          <Route path="/medicine" element={<MedicinePage />} />
+          <Route path="/tests" element={<TestsPage />} />
         </Routes>
       </div>
       <Footer />
