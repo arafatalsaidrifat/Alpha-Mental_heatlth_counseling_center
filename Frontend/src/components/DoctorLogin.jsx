@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
-const login = "/login.jpg"; // Import the login image
+const doctorLogin = "/doctor-login.jpg"; // Doctor login page background image
 
-function Login() {
-  const [mail, setMail] = useState('');
+function DoctorLogin() {
+  const [doctorID, setDoctorID] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();  // Initialize navigate
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleDoctorLogin = async (e) => {
     e.preventDefault();
-    const loginData = { mail, password };
+    const loginData = { doctorID, email, password };
 
     try {
-      const response = await fetch('http://localhost:3001/login', {
+      const response = await fetch('http://localhost:3001/doctor-login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,40 +24,48 @@ function Login() {
       });
 
       if (response.ok) {
-        alert('Login successful');
-        navigate('/dashboard');  // Redirect to the dashboard after successful login
+        alert('Doctor Login Successful');
+        navigate('/DoctorDashboard'); // Redirect to Doctor Dashboard after login
       } else {
-        alert('Invalid email or password');
+        alert('Invalid credentials. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
+      alert('Something went wrong. Please try again later.');
     }
-  };
-
-  const handleDoctorLogin = () => {
-    navigate('/doctor-login');
- // Navigate to the doctor login page
   };
 
   return (
     <div 
       className="flex items-center justify-center min-h-screen" 
       style={{ 
-        backgroundImage: `url(${login})`, // Set the login image as background
+        backgroundImage: `url(${doctorLogin})`, 
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
       }}
     >
-      <div className="flex flex-col items-center bg-white rounded-lg shadow-2xl p-4 max-w-xs w-3/4 opacity-90 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-        <h2 className="text-2xl font-bold text-center mb-3">Login to Your Account</h2>
+      <div className="flex flex-col items-center bg-white rounded-lg shadow-2xl p-4 max-w-sm w-3/4 opacity-90 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+        <h2 className="text-2xl font-bold text-center mb-4">Doctor Login</h2>
         
-        <form onSubmit={handleLogin} className="w-full">
+        <form onSubmit={handleDoctorLogin} className="w-full">
           <label className="flex flex-col mb-3 w-full">
-            <span className="text-sm text-gray-700">Email</span> 
+            <span className="text-sm text-gray-700">Doctor ID</span>
+            <input
+              type="text"
+              value={doctorID}
+              onChange={(e) => setDoctorID(e.target.value)}
+              className="border rounded-lg p-2 mt-1 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-105 shadow-sm hover:shadow-lg"
+              placeholder="Enter your Doctor ID"
+              required
+            />
+          </label>
+
+          <label className="flex flex-col mb-3 w-full">
+            <span className="text-sm text-gray-700">Email</span>
             <input
               type="email"
-              value={mail}
-              onChange={(e) => setMail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="border rounded-lg p-2 mt-1 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-105 shadow-sm hover:shadow-lg"
               placeholder="Enter your email"
               required
@@ -64,7 +73,7 @@ function Login() {
           </label>
 
           <label className="flex flex-col mb-3 w-full">
-            <span className="text-sm text-gray-700">Password</span> 
+            <span className="text-sm text-gray-700">Password</span>
             <input
               type="password"
               value={password}
@@ -82,18 +91,10 @@ function Login() {
           <button type="submit" className="bg-blue-500 text-white rounded-lg py-2 mt-3 hover:bg-blue-600 transition-transform transform hover:scale-105 shadow-md hover:shadow-lg duration-300 w-full">
             Login
           </button>
-
-          <button
-            type="button"
-            onClick={handleDoctorLogin}
-            className="bg-green-500 text-white rounded-lg py-2 mt-3 hover:bg-green-600 transition-transform transform hover:scale-105 shadow-md hover:shadow-lg duration-300 w-full"
-          >
-            Login as Doctor
-          </button>
         </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default DoctorLogin;

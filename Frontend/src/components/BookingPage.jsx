@@ -8,6 +8,7 @@ function BookingPage() {
 
   const [patientName, setPatientName] = useState('');
   const [contact, setContact] = useState('');
+  const [patientId, setPatientId] = useState(''); // Added patient ID state
 
   const handleBooking = async (e) => {
     e.preventDefault();
@@ -17,6 +18,7 @@ function BookingPage() {
       session,
       patientName,
       contact,
+      patientId, // Include the patient ID in the booking data
     };
 
     // Make POST request to save booking to the database
@@ -40,40 +42,53 @@ function BookingPage() {
   };
 
   return (
-    <div className="p-8 max-w-lg mx-auto">
-      <h1 className="text-2xl font-semibold mb-4">Book Session</h1>
-      <form onSubmit={handleBooking} className="space-y-4">
+    <div className="p-8 max-w-lg mx-auto bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 rounded-lg shadow-lg">
+      <h1 className="text-3xl font-semibold text-white text-center mb-6">Book Your Session</h1>
+      <form onSubmit={handleBooking} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
         <div>
-          <label className="block text-gray-700">Doctor:</label>
-          <p className="font-medium">{doctorName}</p>
+          <label className="block text-gray-700 font-medium">Doctor:</label>
+          <p className="text-lg text-blue-600">{doctorName}</p>
         </div>
         <div>
-          <label className="block text-gray-700">Session Time:</label>
-          <p className="font-medium">{session}</p>
+          <label className="block text-gray-700 font-medium">Session Time:</label>
+          <p className="text-lg text-blue-600">{session}</p>
         </div>
         <div>
-          <label className="block text-gray-700">Your Name:</label>
+          <label className="block text-gray-700 font-medium">Patient ID:</label>
           <input 
             type="text" 
-            value={patientName} 
-            onChange={(e) => setPatientName(e.target.value)} 
-            className="w-full p-2 border rounded" 
+            value={patientId} 
+            onChange={(e) => setPatientId(e.target.value)} 
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" 
+            placeholder="Enter your ID" 
             required 
           />
         </div>
         <div>
-          <label className="block text-gray-700">Contact Info:</label>
+          <label className="block text-gray-700 font-medium">Your Name:</label>
+          <input 
+            type="text" 
+            value={patientName} 
+            onChange={(e) => setPatientName(e.target.value)} 
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" 
+            placeholder="Enter your name" 
+            required 
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700 font-medium">Contact Info:</label>
           <input 
             type="text" 
             value={contact} 
             onChange={(e) => setContact(e.target.value)} 
-            className="w-full p-2 border rounded" 
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" 
+            placeholder="Enter your contact info" 
             required 
           />
         </div>
         <button 
           type="submit" 
-          className="w-full p-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          className="w-full p-3 mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
         >
           Confirm Booking
         </button>
@@ -83,3 +98,4 @@ function BookingPage() {
 }
 
 export default BookingPage;
+

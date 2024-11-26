@@ -32,7 +32,13 @@ function SessionsPage() {
       backgroundColor: '#E0F2FE',
       minHeight: '100vh'
     }}>
+      
       <h1 style={{ fontSize: '2rem', fontWeight: '600', color: '#1E3A8A', marginBottom: '24px' }}>
+        Admin view
+      </h1>
+
+
+      <h1 style={{ fontSize: '2rem', fontWeight: '400', color: '#1E3A8A', marginBottom: '24px' }}>
         Your Booked Sessions
       </h1>
       <div style={{

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 
 function Signup() {
   const [name, setName] = useState('');
@@ -12,7 +12,7 @@ function Signup() {
   const [location, setLocation] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();  // Declare the useNavigate hook
+  const navigate = useNavigate(); // Declare the useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ function Signup() {
 
       if (response.ok) {
         alert('Signup successful');
-        navigate('/dashboard');  // Redirect to homepage
+        navigate('/dashboard'); // Redirect to dashboard
       } else {
         alert('Error during signup');
       }
@@ -38,11 +38,16 @@ function Signup() {
     }
   };
 
+  const handleDoctorSignup = () => {
+    navigate('/doctor-signup'); // Navigate to Doctor Signup page
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 py-12">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
         <h2 className="text-2xl font-bold text-center text-gray-800">Create an Account</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
+          {/* Name Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="name">Name</label>
             <input
@@ -55,22 +60,24 @@ function Signup() {
               required
             />
           </div>
+          {/* Email Field */}
           <div>
-            <label className="block mb-1 text-gray-600" htmlFor="mail">Mail</label>
+            <label className="block mb-1 text-gray-600" htmlFor="mail">Email</label>
             <input
               type="email"
               id="mail"
               value={mail}
               onChange={(e) => setMail(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your mail"
+              placeholder="Enter your email"
               required
             />
           </div>
+          {/* Phone Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="phone">Phone</label>
             <input
-              type="tel"
+              type="text"
               id="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -79,6 +86,7 @@ function Signup() {
               required
             />
           </div>
+          {/* Gender Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="gender">Gender</label>
             <select
@@ -88,12 +96,13 @@ function Signup() {
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             >
-              <option value="">Select your gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
             </select>
           </div>
+          {/* Religion Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="religion">Religion</label>
             <input
@@ -106,6 +115,7 @@ function Signup() {
               required
             />
           </div>
+          {/* Date of Birth Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="dob">Date of Birth</label>
             <input
@@ -117,6 +127,7 @@ function Signup() {
               required
             />
           </div>
+          {/* Nationality Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="nationality">Nationality</label>
             <input
@@ -129,18 +140,20 @@ function Signup() {
               required
             />
           </div>
+          {/* Location Field */}
           <div>
-            <label className="block mb-1 text-gray-600" htmlFor="location">Location (City)</label>
+            <label className="block mb-1 text-gray-600" htmlFor="location">Location</label>
             <input
               type="text"
               id="location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your city"
+              placeholder="Enter your location"
               required
             />
           </div>
+          {/* Password Field */}
           <div>
             <label className="block mb-1 text-gray-600" htmlFor="password">Password</label>
             <input
@@ -149,7 +162,7 @@ function Signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Create a password"
+              placeholder="Enter your password"
               required
             />
           </div>
@@ -166,6 +179,13 @@ function Signup() {
             Log In
           </Link>
         </p>
+        {/* Add Sign Up as Doctor Button */}
+        <button
+          onClick={handleDoctorSignup}
+          className="mt-4 w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-transform transform hover:scale-105 shadow-md"
+        >
+          Sign Up as Doctor
+        </button>
       </div>
     </div>
   );

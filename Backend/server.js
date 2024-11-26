@@ -14,21 +14,21 @@ app.use(bodyParser.json());
 // MySQL Connection
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',      // Replace with your MySQL username
-  password: '',      // Replace with your MySQL password
-  database: 'mentalhealth'  // Replace with your database name
+  user: 'root', // Replace with your MySQL username
+  password: '', // Replace with your MySQL password
+  database: 'mentalhealth', // Replace with your database name
 });
 
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err.message);
-    process.exit(1);  // Exit the app if the connection fails
+    process.exit(1); // Exit the app if the connection fails
   } else {
     console.log('Connected to the MySQL database');
   }
 });
 
-// Signup Route
+// User Signup Route
 app.post('/signup', async (req, res) => {
   const { name, mail, phone, gender, religion, dob, nationality, location, password } = req.body;
 
@@ -36,19 +36,24 @@ app.post('/signup', async (req, res) => {
     return res.status(400).send('Missing required fields');
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
 
-  const query = 'INSERT INTO users (name, mail, phone, gender, religion, dob, nationality, location, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  db.query(query, [name, mail, phone, gender, religion, dob, nationality, location, hashedPassword], (err, result) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      return res.status(500).send('Database error');
+  const query =
+    'INSERT INTO users (name, mail, phone, gender, religion, dob, nationality, location, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  db.query(
+    query,
+    [name, mail, phone, gender, religion, dob, nationality, location, hashedPassword],
+    (err, result) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).send('Database error');
+      }
+      res.send('User registered successfully');
     }
-    res.send('User registered successfully');
-  });
+  );
 });
 
-// Login Route with Logging
+// User Login Route with Logging
 app.post('/login', async (req, res) => {
   const { mail, password } = req.body;
 
@@ -62,13 +67,13 @@ app.post('/login', async (req, res) => {
       console.error('Error executing query:', err);
       return res.status(500).send('Database error');
     }
-    
+
     if (result.length > 0) {
       const user = result[0];
 
       // Compare the hashed password with the provided password
       const isMatch = await bcrypt.compare(password, user.password);
-      
+
       if (isMatch) {
         // Save login data in logins table
         const loginQuery = 'INSERT INTO logins (user_id, login_time) VALUES (?, NOW())';
@@ -88,24 +93,107 @@ app.post('/login', async (req, res) => {
   });
 });
 
+// Doctor Signup Route
+app.post('/doctor-signup', async (req, res) => {
+  const { name, mail, specialization, experience, phone, password } = req.body;
+
+  if (!name || !mail || !specialization || !experience || !phone || !password) {
+    return res.status(400).send('All fields are required');
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const query =
+    'INSERT INTO medical_doctors (name, email, specialization, experience, phone, password) VALUES (?, ?, ?, ?, ?, ?)';
+  db.query(query, [name, mail, specialization, experience, phone, hashedPassword], (err) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).send('Error during doctor signup');
+    }
+    res.status(200).send('Doctor signup successful');
+  });
+});
+
+// Doctor Login Route
+app.post('/doctor-login', async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).send('Email and password are required');
+  }
+
+  const query = 'SELECT * FROM medical_doctors WHERE email = ?';
+  db.query(query, [email], async (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).send('Database error');
+    }
+
+    if (result.length > 0) {
+      const doctor = result[0];
+
+      // Compare the hashed password with the provided password
+      const isMatch = await bcrypt.compare(password, doctor.password);
+
+      if (isMatch) {
+        res.status(200).send('Doctor login successful');
+      } else {
+        res.status(401).send('Invalid email or password');
+      }
+    } else {
+      res.status(401).send('Invalid email or password');
+    }
+  });
+});
+
+
+
+
+// Fetch doctor details by email (or any identifier)
+app.get('/api/doctor/details', (req, res) => {
+  const doctorId = req.query.id; // or req.user.id if you're using authentication tokens
+  const query = 'SELECT * FROM medical_doctors WHERE id = ?';
+  db.query(query, [doctorId], (err, result) => {
+    if (err) {
+      console.error('Error fetching doctor details:', err);
+      return res.status(500).send('Error fetching doctor details');
+    }
+    res.status(200).json(result[0]);
+  });
+});
+
+
+
+
+app.get('/api/appointments/today', (req, res) => {
+  const doctorId = req.query.doctorId;
+  const query = 'SELECT * FROM appointments WHERE doctor_id = ? AND date = CURDATE()';
+  db.query(query, [doctorId], (err, result) => {
+    if (err) {
+      console.error('Error fetching appointments:', err);
+      return res.status(500).send('Error fetching appointments');
+    }
+    res.status(200).json(result);
+  });
+});
+
+
+
+
 // Book a session
 app.post('/book', (req, res) => {
   const { doctorName, session_time, patientName, contact } = req.body; // Updated property name
-  const query = `INSERT INTO bookings (doctor_name, session_time, patient_name, contact) VALUES (?, ?, ?, ?)`;
-  db.query(query, [doctorName, session_time, patientName, contact], (error, results) => {
+  const query =
+    'INSERT INTO bookings (doctor_name, session_time, patient_name, contact) VALUES (?, ?, ?, ?)';
+  db.query(query, [doctorName, session_time, patientName, contact], (error) => {
     if (error) return res.status(500).send(error);
-    res.status(200).send("Booking successful");
+    res.status(200).send('Booking successful');
   });
 });
 
 // Get all booked sessions
 app.get('/sessions', (req, res) => {
-
-
-
-  //const userId = req.params.userId; // Get userId from route parameters
-  //const query = `SELECT * FROM bookings WHERE user_id = ?`; // Fetch booki
-  const query = `SELECT * FROM bookings`; // Fetch all bookings
+  const query = 'SELECT * FROM bookings'; // Fetch all bookings
   db.query(query, (error, results) => {
     if (error) return res.status(500).send(error);
     res.status(200).json(results); // Send results as JSON
@@ -114,5 +202,5 @@ app.get('/sessions', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log("Listening on port " + port);
+  console.log('Listening on port ' + port);
 });
