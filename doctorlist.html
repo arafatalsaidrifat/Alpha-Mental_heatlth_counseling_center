@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors List - Mental Health Counseling System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="homepage.html" class="logo">Mental Health Care</a>
+            <ul class="nav-links">
+                <li><a href="contact.html" class="nav-button contact">Contact Us</a></li>
+                <li><a href="about.html" class="nav-button about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="doctor-list-container">
+        <h2>Meet Our Doctors</h2>
+        <div class="doctor-cards" id="doctor-list">
+            <!-- Doctors will be dynamically added here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mental Health Care. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch the doctor data from the backend
+        fetch('/doctors')
+            .then(response => response.json())
+            .then(data => {
+                const doctorListContainer = document.getElementById('doctor-list');
+                doctorListContainer.innerHTML = ''; // Clear any existing content
+
+                // Loop through the fetched doctor data and create HTML elements dynamically
+                data.forEach(doctor => {
+                    const doctorCard = document.createElement('div');
+                    doctorCard.classList.add('doctor-card');
+                    
+                    doctorCard.innerHTML = `
+                        <div class="doctor-info">
+                            <h3>${doctor.name}</h3>
+                            <p><strong>Specialty:</strong> ${doctor.specialty || 'Not Specified'}</p>
+                            <p><strong>Email:</strong> ${doctor.email}</p>
+                            <p><strong>Phone:</strong> ${doctor.phone}</p>
+                            <button class="cta">Book an Appointment</button>
+                        </div>
+                    `;
+
+                    doctorListContainer.appendChild(doctorCard);
+                });
+            })
+            .catch(error => console.error('Error fetching doctors:', error));
+    </script>
+</body>
+</html>

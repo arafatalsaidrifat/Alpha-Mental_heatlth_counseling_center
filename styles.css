@@ -1,0 +1,495 @@
+/* styles.css */
+
+/* General Body Styles */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #4a90e2;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-button {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* Hover and active states for navbar buttons */
+.nav-button:hover {
+    background-color: #ffdd57;
+    color: #333;
+    border-color: #ffdd57;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Auth Form Styles for Login and Sign-Up */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #4a90e2, #0077b6);
+}
+
+.auth-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.auth-form h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Call-to-Action (CTA) Buttons */
+.cta {
+    background-color: #ffdd57;
+    color: #333;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cta:hover {
+    background-color: #ffc107;
+    transform: translateY(-5px);
+}
+
+/* Link Styles for Sign Up/Login links */
+.link {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Full Banner Styles */
+.banner {
+    background: linear-gradient(to bottom right, #4a90e2, #0077b6);
+    color: #fff;
+    text-align: center;
+    padding: 150px 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    margin-bottom: 0px;
+    position: relative;
+    z-index: 1;
+}
+
+.banner-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.cta {
+    background-color: #ffdd57;
+    color: #333;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cta:hover {
+    background-color: #ffc107;
+    transform: translateY(-5px);
+}
+
+/* Full-screen Image Section */
+.full-screen-image {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -120px;
+    z-index: 0;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    clip-path: polygon(0% 10%, 100% 0, 100% 100%, 0 100%);
+}
+
+.mental-health-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #191d42;
+    margin-top: 20px;
+    z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-button {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .banner-content h1 {
+        font-size: 2rem;
+    }
+
+    .banner-content p {
+        font-size: 1rem;
+    }
+
+    .cta {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .quote {
+        font-size: 1.2rem;
+    }
+
+    .auth-form {
+        padding: 30px;
+        width: 80%;
+    }
+}
+/* Prevent underline and purple color on logo */
+.navbar .logo {
+    color: #fff; /* Ensure the logo stays white */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar .logo:focus,
+.navbar .logo:active {
+    outline: none; /* Remove focus outline */
+    text-decoration: none; /* Ensure no underline on active or focus */
+}
+/* Add this to your existing CSS */
+
+/* Style for Select Dropdown (Gender) */
+input[type="tel"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* For select dropdown, remove default styling */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23ccc%22%20d%3D%22M7.9%2010L3%205.1C2.7%204.8%202.7%204.3%203%204s.3.7.6%201L10%208.9l6.4-6.4c.3-.3.8-.3%201%200s.3.8%200%201L12.1%2010z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Optional: Adjust padding for select dropdown to match input fields */
+.select-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-container::after {
+    content: '▼';
+    font-size: 12px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+    pointer-events: none;
+}
+/* Add to your existing styles.css */
+
+/* Doctor List Container */
+.doctor-list-container {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.doctor-list-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+    color: #333;
+}
+
+.doctor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    margin: 0;
+}
+
+/* Doctor Card Styles */
+.doctor-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 280px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.doctor-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.doctor-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.cta {
+    background-color: #ffdd57;
+    color: #333;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cta:hover {
+    background-color: #ffc107;
+    transform: translateY(-5px);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+/* Dashboard Container */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 tiles per row */
+    gap: 30px;
+    padding: 40px;
+    margin-top: 250px; /* Bring the tiles a bit lower */
+}
+
+/* Dashboard Tile Styles */
+.dashboard-tile {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Increased padding to make tiles larger */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align content vertically */
+    height: 250px; /* Ensure all tiles have the same height */
+
+}
+
+.dashboard-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-tile h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.dashboard-tile ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.dashboard-tile ul li {
+    margin-bottom: 10px;
+}
+
+.dashboard-tile p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.dashboard-tile .cta {
+    background-color: #ffdd57;
+    color: #333;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin-top: 20px; /* Ensures button is below the content */
+}
+
+.dashboard-tile .cta:hover {
+    background-color: #ffc107;
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 tiles per row on smaller screens */
+    }
+
+    .dashboard-tile {
+        height: auto; /* Allow tiles to adjust height on small screens */
+    }
+}
+
+/* Specific style for this page to center the tiles */
+.dashboard-centered-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 tiles per row */
+    gap: 30px;
+    padding: 40px;
+    justify-items: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    height: 100vh; /* Full viewport height to center vertically */
+}
