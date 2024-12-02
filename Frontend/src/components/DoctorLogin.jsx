@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const doctorLogin = "/doctor-login.jpg"; // Doctor login page background image
-
-function DoctorLogin() {
-  const [doctorID, setDoctorID] = useState('');
+function DoctorLogin({ setIsLoggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const navigate = useNavigate();
 
   const handleDoctorLogin = async (e) => {
     e.preventDefault();
-    const loginData = { doctorID, email, password };
+    const loginData = { email, password };
 
     try {
       const response = await fetch('http://localhost:3001/doctor-login', {
@@ -25,7 +21,8 @@ function DoctorLogin() {
 
       if (response.ok) {
         alert('Doctor Login Successful');
-        navigate('/DoctorDashboard'); // Redirect to Doctor Dashboard after login
+        setIsLoggedIn(true); // Update global login state
+        navigate('/doctor-dashboard'); // Navigate to the correct route
       } else {
         alert('Invalid credentials. Please try again.');
       }
@@ -39,56 +36,49 @@ function DoctorLogin() {
     <div 
       className="flex items-center justify-center min-h-screen" 
       style={{ 
-        backgroundImage: `url(${doctorLogin})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center',
+        background: 'linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4)', 
+        backgroundSize: '400% 400%', 
+        animation: 'gradientAnimation 15s ease infinite',
       }}
     >
-      <div className="flex flex-col items-center bg-white rounded-lg shadow-2xl p-4 max-w-sm w-3/4 opacity-90 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+      <style>
+        {`
+          @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        `}
+      </style>
+      <div className="flex flex-col items-center bg-white rounded-lg shadow-2xl p-4 max-w-sm w-3/4 opacity-90">
         <h2 className="text-2xl font-bold text-center mb-4">Doctor Login</h2>
-        
         <form onSubmit={handleDoctorLogin} className="w-full">
-          <label className="flex flex-col mb-3 w-full">
-            <span className="text-sm text-gray-700">Doctor ID</span>
-            <input
-              type="text"
-              value={doctorID}
-              onChange={(e) => setDoctorID(e.target.value)}
-              className="border rounded-lg p-2 mt-1 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-105 shadow-sm hover:shadow-lg"
-              placeholder="Enter your Doctor ID"
-              required
-            />
-          </label>
-
-          <label className="flex flex-col mb-3 w-full">
+          <label className="flex flex-col mb-3">
             <span className="text-sm text-gray-700">Email</span>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border rounded-lg p-2 mt-1 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-105 shadow-sm hover:shadow-lg"
+              className="border rounded-lg p-2 mt-1 bg-gray-100"
               placeholder="Enter your email"
               required
             />
           </label>
-
-          <label className="flex flex-col mb-3 w-full">
+          <label className="flex flex-col mb-3">
             <span className="text-sm text-gray-700">Password</span>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border rounded-lg p-2 mt-1 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform transform hover:scale-105 shadow-sm hover:shadow-lg"
+              className="border rounded-lg p-2 mt-1 bg-gray-100"
               placeholder="Enter your password"
               required
             />
           </label>
-
-          <div className="flex justify-between items-center w-full mb-3 px-2">
-            <a href="/forgot-password" className="text-blue-500 hover:underline text-xs">Forgot Password?</a>
-          </div>
-
-          <button type="submit" className="bg-blue-500 text-white rounded-lg py-2 mt-3 hover:bg-blue-600 transition-transform transform hover:scale-105 shadow-md hover:shadow-lg duration-300 w-full">
+          <button 
+            type="submit" 
+            className="bg-blue-500 text-white rounded-lg py-2 mt-3 hover:bg-blue-600 w-full"
+          >
             Login
           </button>
         </form>

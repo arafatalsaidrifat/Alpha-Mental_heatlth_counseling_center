@@ -1,5 +1,3 @@
-// Import the Navbar
-import Navbar from './Navbar';
 import React, { useState } from 'react';
 
 const back = "/back.jpeg"; // Adjusted path for background image
@@ -46,25 +44,25 @@ function Banner() {
         backgroundRepeat: 'no-repeat', // Prevent repeating
       }}
     >
-      {/* Background with 3D effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-pink-500 to-orange-400 opacity-80 transform -translate-z-0 shadow-lg" />
+      {/* Background with a subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-pink-500 to-orange-400 opacity-70" />
 
       <div className="w-full max-w-screen-lg mx-auto relative z-10 flex flex-col items-center justify-center text-center space-y-6"> {/* Center everything in a column */}
-        <h1 className="text-4xl font-bold">Welcome to our!!</h1>
-        <h1 className="text-4xl font-bold">MENTAL HEALTH COUNSELING CENTER</h1>
-        <p className="text-lg text-black-500">
+        <h1 className="text-5xl font-extrabold text-white">Welcome to our!!</h1>
+        <h1 className="text-5xl font-extrabold text-white">MENTAL HEALTH COUNSELING CENTER</h1>
+        <p className="text-lg text-white">
           Unlock Inner Peace with Expert Guidance.
         </p>
 
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Explore Our Services</h2>
+          <h2 className="text-2xl font-bold mb-4 text-white">Explore Our Services</h2>
           <div className="flex items-center justify-center">
             <button onClick={handlePrev} className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300">❮</button>
             <div className="mx-4 overflow-hidden" style={{ width: '300px' }}>
               <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentDivision * 100}%)` }}>
                 {divisions.map((division, index) => (
-                  <div key={index} className="flex-shrink-0 w-full p-4 rounded-lg shadow-2xl bg-gradient-to-r from-green-400 to-blue-500 text-white text-center transform transition-transform duration-300 hover:scale-105">
-                    <h3 className="text-lg font-semibold">{division.title}</h3>
+                  <div key={index} className="flex-shrink-0 w-full p-6 rounded-lg shadow-xl bg-gradient-to-r from-green-400 to-blue-500 text-white text-center transform transition-transform duration-300 hover:scale-105">
+                    <h3 className="text-xl font-semibold">{division.title}</h3>
                     <p className="mt-2">{division.description}</p>
                   </div>
                 ))}
@@ -74,7 +72,7 @@ function Banner() {
           </div>
         </div>
 
-        <ul className="list-disc ml-5 space-y-1 text-center">
+        <ul className="list-disc ml-5 space-y-1 text-center text-white">
           <li>Professional and certified counselors available 24/7.</li>
           <li>Confidential one-on-one sessions tailored to your needs.</li>
           <li>Online booking for appointments with licensed therapists.</li>
@@ -83,7 +81,7 @@ function Banner() {
         </ul>
 
         <label className="flex flex-col items-center mt-6">
-          <span className="text-lg font-semibold mb-2">Email</span>
+          <span className="text-lg font-semibold mb-2 text-white">Email</span>
           <input
             type="text"
             className="p-2 rounded border border-gray-300"
@@ -91,7 +89,7 @@ function Banner() {
           />
         </label>
 
-        <button className="mt-4 px-6 py-2 bg-secondary text-white rounded hover:bg-transparent hover:text-secondary border-secondary border-2 transition duration-300">
+        <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-transparent hover:text-blue-500 border-blue-500 border-2 transition duration-300">
           GO
         </button>
       </div>

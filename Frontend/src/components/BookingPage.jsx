@@ -8,7 +8,6 @@ function BookingPage() {
 
   const [patientName, setPatientName] = useState('');
   const [contact, setContact] = useState('');
-  const [patientId, setPatientId] = useState(''); // Added patient ID state
 
   const handleBooking = async (e) => {
     e.preventDefault();
@@ -18,7 +17,6 @@ function BookingPage() {
       session,
       patientName,
       contact,
-      patientId, // Include the patient ID in the booking data
     };
 
     // Make POST request to save booking to the database
@@ -31,7 +29,9 @@ function BookingPage() {
       
       if (response.ok) {
         alert("Booking successful!");
-        navigate('/sessions'); // Redirect to sessions page
+
+        // Redirect to the Booked page with booking details
+        navigate('/booked', { state: { bookedDetails: bookingData } });
       } else {
         alert("Booking failed. Please try again.");
       }
@@ -42,60 +42,57 @@ function BookingPage() {
   };
 
   return (
-    <div className="p-8 max-w-lg mx-auto bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 rounded-lg shadow-lg">
-      <h1 className="text-3xl font-semibold text-white text-center mb-6">Book Your Session</h1>
-      <form onSubmit={handleBooking} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
-        <div>
-          <label className="block text-gray-700 font-medium">Doctor:</label>
-          <p className="text-lg text-blue-600">{doctorName}</p>
+    <div className="p-12 max-w-4xl mx-auto bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-500 rounded-xl shadow-2xl transform transition duration-500 hover:scale-105">
+      <h1 className="text-4xl font-bold text-white text-center mb-8 tracking-tight">Book Your Session</h1>
+      <form onSubmit={handleBooking} className="space-y-8 bg-white p-8 rounded-lg shadow-2xl hover:shadow-xl transition-all duration-300">
+        <div className="flex justify-between items-center">
+          <div>
+            <label className="block text-gray-800 font-medium text-lg">Doctor:</label>
+            <p className="text-xl font-semibold text-blue-700">{doctorName}</p>
+          </div>
+          <div>
+            <label className="block text-gray-800 font-medium text-lg">Session Time:</label>
+            <p className="text-xl font-semibold text-blue-700">{session}</p>
+          </div>
         </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Session Time:</label>
-          <p className="text-lg text-blue-600">{session}</p>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-gray-700 font-medium">Your Name:</label>
+            <input 
+              type="text" 
+              value={patientName} 
+              onChange={(e) => setPatientName(e.target.value)} 
+              className="w-full p-4 bg-gray-100 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300 hover:bg-gray-200"
+              placeholder="Enter your name" 
+              required 
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium">Contact Info:</label>
+            <input 
+              type="text" 
+              value={contact} 
+              onChange={(e) => setContact(e.target.value)} 
+              className="w-full p-4 bg-gray-100 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300 hover:bg-gray-200"
+              placeholder="Enter your contact info" 
+              required 
+            />
+          </div>
         </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Patient ID:</label>
-          <input 
-            type="text" 
-            value={patientId} 
-            onChange={(e) => setPatientId(e.target.value)} 
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" 
-            placeholder="Enter your ID" 
-            required 
-          />
+
+        <div className="flex justify-center">
+          <button 
+            type="submit" 
+            className="w-full p-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transform transition duration-300 hover:scale-105"
+          >
+            Confirm Booking
+          </button>
         </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Your Name:</label>
-          <input 
-            type="text" 
-            value={patientName} 
-            onChange={(e) => setPatientName(e.target.value)} 
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" 
-            placeholder="Enter your name" 
-            required 
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 font-medium">Contact Info:</label>
-          <input 
-            type="text" 
-            value={contact} 
-            onChange={(e) => setContact(e.target.value)} 
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" 
-            placeholder="Enter your contact info" 
-            required 
-          />
-        </div>
-        <button 
-          type="submit" 
-          className="w-full p-3 mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
-        >
-          Confirm Booking
-        </button>
       </form>
     </div>
   );
 }
 
 export default BookingPage;
-

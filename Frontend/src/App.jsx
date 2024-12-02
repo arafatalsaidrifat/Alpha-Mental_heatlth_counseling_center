@@ -9,8 +9,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Banner from './components/Banner'; // Your Banner component acts as the Landing Page
 import Footer from './components/Footer';
-import './index.css';
-import Counselor from './components/Counselor'; // Adjust the path as necessary
+import Counselor from './components/counselor'; // Adjust the path as necessary
 import LiveChat from './components/LiveChat';
 import HealthRecord from './components/HealthRecord';
 import DoctorPackages from './components/DoctorPackages';
@@ -24,22 +23,29 @@ import MedicinePage from './components/MedicinePage';
 import TestsPage from './components/TestsPage';
 import DoctorLogin from './components/DoctorLogin'; // Correctly import DoctorLogin
 import DoctorSignup from './components/DoctorSignup';
-import DoctorDashboard from './components/DoctorDashboard';
+import DoctorLand from './components/DoctorLand';
+import DoctorMatch from './components/DoctorMatch';
+import Booked from './components/Booked';
+
 export const ThemeContext = createContext();
+
 
 function App() {
   const [theme, setTheme] = useState('light');
-  // eslint-disable-next-line no-unused-vars
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
   const location = useLocation();
 
   useEffect(() => {
+    // Fetch user login status or data from API
     fetch('http://localhost:3001/login')
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error('Fetch error:', err));
 
-    document.documentElement.setAttribute('data-theme', theme);
+    // Apply theme attribute to HTML document
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
   }, [theme]);
 
   const toggleTheme = () => {
@@ -51,8 +57,10 @@ function App() {
       {/* Conditionally render BlankNavbar for DoctorSignup and DoctorLogin pages */}
       {location.pathname === '/doctor-signup' || location.pathname === '/doctor-login' ? (
         <BlankNavbar /> // Show BlankNavbar on these pages
+      ) : location.pathname === '/' ? (
+        <Navbar2 /> // Show Navbar2 for Landing Page
       ) : (
-        location.pathname === '/' ? <Navbar2 /> : <Navbar /> // Show Navbar2 for Landing Page and Navbar for others
+        <Navbar /> // Show Navbar for others
       )}
 
       <div className="app-content">
@@ -70,15 +78,16 @@ function App() {
           <Route path="/psychiatrists" element={<Psychiatrists />} />
           <Route path="/psychologists" element={<Psychologists />} />
           <Route path="/counselors" element={<Counselors />} />
-          <Route path="/book" element={<BookingPage />} /> {/* Route to BookingPage */}
+          <Route path="/book" element={<BookingPage />} />
           <Route path="/sessions" element={<SessionsPage />} />
-          <Route path="/health-suggestions" element={<HealthSuggestions />} /> {/* New Route for HealthSuggestions */}
+          <Route path="/health-suggestions" element={<HealthSuggestions />} />
           <Route path="/medicine" element={<MedicinePage />} />
           <Route path="/tests" element={<TestsPage />} />
-          <Route path="/doctor-login" element={<DoctorLogin />} /> {/* Corrected Route for DoctorLogin */}
+          <Route path="/doctor-login" element={<DoctorLogin />} />
           <Route path="/doctor-signup" element={<DoctorSignup />} />
-          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
-
+          <Route path="/doctor-dashboard" element={<DoctorLand />} /> 
+          <Route path="/dtd" element={<DoctorMatch />} />
+          <Route path="/booked" element={<Booked />} />
         </Routes>
       </div>
       <Footer />

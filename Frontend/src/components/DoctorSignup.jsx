@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import BlankNavbar from "./BlankNavbar"; // Import the blank navbar
 
 const doctorSignupBg = "/doctorsignup.jpg"; // Background image for Doctor Signup
 
@@ -19,6 +18,8 @@ function DoctorSignup() {
 
     const doctorData = { name, mail, specialization, experience, phone, password };
 
+    console.log('Doctor data being sent to server:', doctorData); // Log the data for debugging
+
     try {
       const response = await fetch('http://localhost:3001/doctor-signup', {
         method: 'POST',
@@ -28,18 +29,21 @@ function DoctorSignup() {
 
       if (response.ok) {
         alert('Doctor Signup successful');
-        navigate('/DoctorDashboard'); // Redirect to DoctorDashboard after successful signup
+        // Only navigate after successful signup response
+        navigate('/doctor-dashboard'); // Redirect to DoctorDashboard after successful signup
       } else {
         alert('Error during doctor signup');
+        const errorText = await response.text();
+        console.error('Error:', errorText); // Log the error message from the server
       }
     } catch (error) {
       console.error('Error:', error);
+      alert('Something went wrong, please try again.');
     }
   };
 
   return (
     <div>
-      <BlankNavbar /> {/* Include the blank navbar */}
       <div className="flex min-h-screen">
         {/* Left side: Signup form */}
         <div className="flex items-center justify-center w-1/2 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
