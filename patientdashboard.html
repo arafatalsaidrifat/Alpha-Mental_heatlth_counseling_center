@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Patient Dashboard</div>
+        <ul class="nav-links">
+            <li><a href="http://localhost:5000/logout" class="nav-button">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Patient Dashboard -->
+    <div class="dashboard-container">
+        
+        <!-- Booked Appointments Tile (Button to Booked Appointments Page) -->
+        <div class="dashboard-tile">
+            <h3>Booked Appointments</h3>
+            <p>View and manage your booked appointments.</p>
+            <div class="cta">Go to Appointments</div>
+        </div>
+    
+        <!-- Update Info Tile -->
+        <div class="dashboard-tile">
+            <h3>Update Information</h3>
+            <p>Update your personal information.</p>
+            <a href="update-info.html" class="cta">Update Info</a>
+        </div>
+    
+        <!-- Doctor Match Tile -->
+        <div class="dashboard-tile">
+            <h3>Find a Doctor</h3>
+            <p>Find a doctor that best suits your needs.</p>
+            <a href="doctor-match.html" class="cta">Find Doctor</a>
+        </div>
+    
+        <!-- Book Appointment Tile -->
+        <div class="dashboard-tile">
+            <h3>Book Appointment</h3>
+            <p>Schedule your next appointment with a doctor.</p>
+            <a href="doctorlist.html" class="cta">Book Appointment</a>
+        </div>
+    </div>
+    
+</body>
+</html>
