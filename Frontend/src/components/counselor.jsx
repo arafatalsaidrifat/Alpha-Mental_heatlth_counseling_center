@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 // Sample data for counselors
 const counselor = [
@@ -24,6 +25,7 @@ const counselor = [
 ];
 
 const CounselorBooking = () => {
+  const navigate = useNavigate(); // Initialize navigate
   const [bookedSessions, setBookedSessions] = useState({}); // Object to store booked sessions
   const [selectedCounselor, setSelectedCounselor] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
@@ -90,7 +92,6 @@ const CounselorBooking = () => {
   const simulateApiBooking = (doctorId, time) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simulate a success response from the server
         resolve(`Booked session for doctor ${doctorId} at ${time}`);
       }, 1000);
     });
@@ -100,7 +101,6 @@ const CounselorBooking = () => {
   const simulateApiCancelBooking = (doctorId, time) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simulate a success response from the server
         resolve(`Cancelled session for doctor ${doctorId} at ${time}`);
       }, 1000);
     });
@@ -165,6 +165,34 @@ const CounselorBooking = () => {
           <p>Time: {selectedTime}</p>
         </div>
       )}
+
+      {/* Doctor Categories Section */}
+      <section className="mb-10 mt-4 w-full ml-8">
+        <h2 className="text-3xl font-semibold mb-4 text-center">Doctor Categories</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            onClick={() => navigate('/psychiatrists')}
+            className="bg-gradient-to-r from-green-400 to-green-600 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+          >
+            <h3 className="text-lg font-bold text-white">Psychiatrists</h3>
+            <p className="mt-2 text-white">Specialized in mental health disorders.</p>
+          </div>
+          <div
+            onClick={() => navigate('/psychologists')}
+            className="bg-gradient-to-r from-blue-400 to-blue-600 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+          >
+            <h3 className="text-lg font-bold text-white">Psychologists</h3>
+            <p className="mt-2 text-white">Focus on therapy and counseling.</p>
+          </div>
+          <div
+            onClick={() => navigate('/counselors')}
+            className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+          >
+            <h3 className="text-lg font-bold text-white">Counselors</h3>
+            <p className="mt-2 text-white">Support for mental well-being.</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

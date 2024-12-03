@@ -12,7 +12,7 @@ function Dashboard() {
       <div className="flex-none p-4 bg-white dark:bg-gray-800 rounded-md shadow-md w-full mb-6">
         <h2 className="text-lg font-bold mb-2 text-center text-gray-700">Your Health</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
-          <div onClick={() => navigate('/doctor-match')} className="bg-gradient-to-r from-pink-400 to-pink-600 p-6 rounded-md flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition duration-300 transform hover:scale-105">
+          <div onClick={() => navigate('/counselor')} className="bg-gradient-to-r from-pink-400 to-pink-600 p-6 rounded-md flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition duration-300 transform hover:scale-105">
             <img src="https://img.icons8.com/ios-filled/40/ffffff/doctor-male--v2.png" alt="Doctor" className="h-10 w-10" />
             <p className="mt-1 text-white text-sm font-medium">Doctors match</p>
           </div>
@@ -84,24 +84,7 @@ function Dashboard() {
         </div>
       </section>
 
-      {/* Doctor Categories Section */}
-      <section className="mb-10 mt-4 w-full ml-8">
-        <h2 className="text-3xl font-semibold mb-4 text-center">Doctor Categories</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div onClick={() => navigate('/psychiatrists')} className="bg-gradient-to-r from-green-400 to-green-600 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer">
-            <h3 className="text-lg font-bold text-white">Psychiatrists</h3>
-            <p className="mt-2 text-white">Specialized in mental health disorders.</p>
-          </div>
-          <div onClick={() => navigate('/psychologists')} className="bg-gradient-to-r from-blue-400 to-blue-600 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer">
-            <h3 className="text-lg font-bold text-white">Psychologists</h3>
-            <p className="mt-2 text-white">Focus on therapy and counseling.</p>
-          </div>
-          <div onClick={() => navigate('/counselors')} className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer">
-            <h3 className="text-lg font-bold text-white">Counselors</h3>
-            <p className="mt-2 text-white">Support for mental well-being.</p>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 }
