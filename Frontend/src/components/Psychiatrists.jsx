@@ -11,7 +11,10 @@ function Psychiatrists() {
   ];
 
   const handleBook = (doctorName, session) => {
-    navigate('/book', { state: { doctorName, session } });
+    const date = prompt("Please enter the date for the session (e.g., 2024-12-25):");
+    if (date) {
+      navigate('/book', { state: { doctorName, session, date } });
+    }
   };
 
   return (
