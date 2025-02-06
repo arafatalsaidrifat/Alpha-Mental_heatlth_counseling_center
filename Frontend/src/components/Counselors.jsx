@@ -6,9 +6,33 @@ function Counselors() {
   const navigate = useNavigate();
 
   const counselors = [
-    { name: "Dr. Nazia Ahmed", exp: "6 Years", rating: "4.9", sessions: ["10:00 AM", "3:00 PM"] },
-    { name: "Dr. Rafiq Hasan", exp: "4 Years", rating: "4.4", sessions: ["11:00 AM", "4:00 PM"] },
-    { name: "Dr. Mahbub Alam", exp: "6 Years", rating: "4.5", sessions: ["1:00 PM", "5:00 PM"] },
+    {
+      name: "Dr. Nazia Ahmed",
+      exp: "6 Years",
+      rating: "4.9",
+      sessions: [
+        { date: "2024-12-10", time: "10:00 AM" },
+        { date: "2024-12-11", time: "3:00 PM" },
+      ],
+    },
+    {
+      name: "Dr. Rafiq Hasan",
+      exp: "4 Years",
+      rating: "4.4",
+      sessions: [
+        { date: "2024-12-10", time: "11:00 AM" },
+        { date: "2024-12-12", time: "4:00 PM" },
+      ],
+    },
+    {
+      name: "Dr. Mahbub Alam",
+      exp: "6 Years",
+      rating: "4.5",
+      sessions: [
+        { date: "2024-12-11", time: "1:00 PM" },
+        { date: "2024-12-12", time: "5:00 PM" },
+      ],
+    },
   ];
 
   const handleBook = (doctorName, session) => {
@@ -29,7 +53,9 @@ function Counselors() {
               <ul className="mt-2">
                 {doctor.sessions.map((session, i) => (
                   <li key={i} className="flex justify-between items-center border-b border-gray-200 py-2">
-                    <span className="text-blue-600 hover:underline">{session}</span>
+                    <span className="text-blue-600 hover:underline">
+                      {session.date} - {session.time}
+                    </span>
                     <button
                       onClick={() => handleBook(doctor.name, session)}
                       className="bg-purple-600 text-white px-4 py-1 rounded transition duration-200 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"

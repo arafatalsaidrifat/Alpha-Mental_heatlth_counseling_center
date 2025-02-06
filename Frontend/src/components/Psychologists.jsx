@@ -6,10 +6,42 @@ function Psychologists() {
   const navigate = useNavigate();
 
   const psychologists = [
-    { name: "Dr. Sabrina Chowdhury", exp: "7 Years", rating: "4.8", sessions: ["10:00 AM", "3:00 PM"] },
-    { name: "Dr. Tahsin Rahman", exp: "5 Years", rating: "4.6", sessions: ["11:00 AM", "4:00 PM"] },
-    { name: "Dr. Tania Rahim", exp: "5 Years", rating: "4.6", sessions: ["1:00 PM", "5:00 PM"] },
-    { name: "Dr. Nusrat Jahan", exp: "3 Years", rating: "4.9", sessions: ["2:00 PM", "6:00 PM"] },
+    {
+      name: "Dr. Sabrina Chowdhury",
+      exp: "7 Years",
+      rating: "4.8",
+      sessions: [
+        { date: "2024-12-20", time: "10:00 AM" },
+        { date: "2024-12-21", time: "3:00 PM" },
+      ],
+    },
+    {
+      name: "Dr. Tahsin Rahman",
+      exp: "5 Years",
+      rating: "4.6",
+      sessions: [
+        { date: "2024-12-22", time: "11:00 AM" },
+        { date: "2024-12-23", time: "4:00 PM" },
+      ],
+    },
+    {
+      name: "Dr. Tania Rahim",
+      exp: "5 Years",
+      rating: "4.6",
+      sessions: [
+        { date: "2024-12-24", time: "1:00 PM" },
+        { date: "2024-12-25", time: "5:00 PM" },
+      ],
+    },
+    {
+      name: "Dr. Nusrat Jahan",
+      exp: "3 Years",
+      rating: "4.9",
+      sessions: [
+        { date: "2024-12-26", time: "2:00 PM" },
+        { date: "2024-12-27", time: "6:00 PM" },
+      ],
+    },
   ];
 
   const handleBook = (psychologistName, session) => {
@@ -31,7 +63,9 @@ function Psychologists() {
                 <ul className="mt-2">
                   {doctor.sessions.map((session, i) => (
                     <li key={i} className="flex justify-between items-center border-b border-gray-200 py-2">
-                      <span className="text-blue-600 hover:underline">{session}</span>
+                      <span className="text-blue-600 hover:underline">
+                        {session.date} - {session.time}
+                      </span>
                       <button
                         onClick={() => handleBook(doctor.name, session)}
                         className="bg-purple-600 text-white px-4 py-1 rounded transition duration-200 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
