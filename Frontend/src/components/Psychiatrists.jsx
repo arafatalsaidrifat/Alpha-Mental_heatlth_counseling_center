@@ -36,7 +36,7 @@ function Psychiatrists() {
   ];
 
   const handleBook = (doctorName, session) => {
-    navigate('/book', { state: { doctorName, session } });
+    navigate("/userbook", { state: { doctorName, session } });
   };
 
   return (

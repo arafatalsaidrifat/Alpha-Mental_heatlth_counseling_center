@@ -26,7 +26,8 @@ import DoctorSignup from './components/DoctorSignup';
 import DoctorLand from './components/DoctorLand';
 import DoctorMatch from './components/DoctorMatch';
 import Booked from './components/Booked';
-
+import BookingForm from "./components/BookingForm";
+import About from "./components/About";
 export const ThemeContext = createContext();
 
 
@@ -88,6 +89,8 @@ function App() {
           <Route path="/doctor-dashboard" element={<DoctorLand />} /> 
           <Route path="/dtd" element={<DoctorMatch />} />
           <Route path="/booked" element={<Booked />} />
+          <Route path="/userbook" element={<BookingForm />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
       <Footer />

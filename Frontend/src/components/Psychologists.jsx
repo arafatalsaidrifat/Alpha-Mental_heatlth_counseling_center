@@ -44,38 +44,36 @@ function Psychologists() {
     },
   ];
 
-  const handleBook = (psychologistName, session) => {
-    navigate('/book', { state: { psychologistName, session } });
+  const handleBook = (doctorName, session) => {
+    navigate("/userbook", { state: { doctorName, session } });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-100 to-indigo-300 flex items-center justify-center py-10">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-xl">
-        <h1 className="text-3xl font-bold mb-6 text-center text-purple-800">Psychologists</h1>
-        <ul>
+    <div className="min-h-screen bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center py-10">
+      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg mx-4">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">Psychologists</h1>
+        <ul className="space-y-3">
           {psychologists.map((doctor, index) => (
-            <li key={index} className="p-4 mb-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-              <div className="flex flex-col">
-                <h2 className="text-2xl font-bold text-gray-900">{doctor.name}</h2>
-                <p className="text-gray-600">Experience: {doctor.exp}</p>
-                <p className="text-gray-600">Rating: {doctor.rating}</p>
-                <h3 className="font-semibold mt-2 text-gray-800">Available Sessions:</h3>
-                <ul className="mt-2">
-                  {doctor.sessions.map((session, i) => (
-                    <li key={i} className="flex justify-between items-center border-b border-gray-200 py-2">
-                      <span className="text-blue-600 hover:underline">
-                        {session.date} - {session.time}
-                      </span>
-                      <button
-                        onClick={() => handleBook(doctor.name, session)}
-                        className="bg-purple-600 text-white px-4 py-1 rounded transition duration-200 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-                      >
-                        Book
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <li key={index} className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h2 className="text-xl font-semibold text-gray-800">{doctor.name}</h2>
+              <p className="text-gray-600">Experience: <span className="font-medium">{doctor.exp}</span></p>
+              <p className="text-gray-600">Rating: <span className="font-medium">{doctor.rating}</span></p>
+              <h3 className="font-semibold mt-2">Available Sessions:</h3>
+              <ul className="space-y-1">
+                {doctor.sessions.map((session, i) => (
+                  <li key={i} className="flex justify-between items-center">
+                    <span className="text-blue-600 font-medium cursor-pointer hover:text-blue-700">
+                      {session.date} - {session.time}
+                    </span>
+                    <button
+                      onClick={() => handleBook(doctor.name, session)}
+                      className="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+                    >
+                      Book
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>

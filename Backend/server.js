@@ -229,6 +229,22 @@ app.get('/sessions', (req, res) => {
   });
 });
 
+
+
+app.post("/ub", (req, res) => {
+  const { name, mobile, email, needs, doctor, date, time } = req.body;
+
+  const query =
+    "INSERT INTO ub (name, mobile, email, needs, doctor, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  db.query(query, [name, mobile, email, needs, doctor, date, time], (err, result) => {
+    if (err) {
+      console.error("Error inserting data:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+    res.json({ success: true, message: "Booking successful" });
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log('Listening on port ' + port);
